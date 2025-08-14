@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('services', static function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->string('url');
-            $table->foreignUlid('user_id')->constrained()->cascadeOnDelete();
+            $table->string('url')->unique();
+            $table->boolean('up')->default(false);
+            $table->foreignUlid('user_id')->index()->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });
