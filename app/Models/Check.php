@@ -34,6 +34,11 @@ class Check extends Model
         ];
     }
 
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
+    }
+
     public function credential(): BelongsTo
     {
         return $this->belongsTo(Credential::class);
